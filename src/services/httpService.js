@@ -1,4 +1,5 @@
 import axios from 'axios';
+import logger from './logService';
 import { toast } from 'react-toastify';
 
 axios.interceptors.response.use(null, (error) => {
@@ -8,7 +9,8 @@ axios.interceptors.response.use(null, (error) => {
     error.response.status < 500;
 
   if (!expectedError) {
-    console.log('Logging the error', error);
+    logger.log(error);
+    //console.log('Logging the error', error);
     // toast.error('An umexpected error occurred.'); for error
     // if you want show information messages line below
     toast('An umexpected error occurred.');
